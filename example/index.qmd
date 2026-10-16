@@ -1,0 +1,42 @@
+---
+title: Ideas worth keeping
+subtitle: A small notebook for code and careful reading.
+---
+
+Good documentation gives an idea room to breathe. A clear heading, a comfortable
+line, and a useful example help the reader find a way in.
+
+## A small example
+
+Code should feel at home beside the prose. A name like `entry.title` carries
+the thought into a few lines you can run.
+
+```{.python filename="notebook.py"}
+from dataclasses import dataclass
+
+@dataclass
+class Entry:
+    title: str
+    tags: tuple[str, ...] = ()
+
+note = Entry("The art of paying attention", ("reading",))
+```
+
+## Leave room for the reader
+
+A useful page has a rhythm: a thought, an example, a pause. *Emphasis* gives
+one phrase its place, and **strong text** makes a point easy to find again.
+
+> A notebook is a place to think on paper, and a place to return to that thought.
+
+| Piece | Purpose | Example |
+|:------|:--------|:--------|
+| A title | Name the idea | A reading notebook |
+| A tag | Give it another home | `reading` |
+| A link | Connect two thoughts | [Code and data](code.qmd) |
+
+::: {.callout-note}
+## The same document
+Every theme in this collection shows the same words, code, and controls.
+Only the theme changes.
+:::

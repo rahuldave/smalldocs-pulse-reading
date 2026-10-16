@@ -1,0 +1,23 @@
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const desired = new URLSearchParams(location.search).get('mode');
+  const paired = document.querySelectorAll('link.quarto-color-scheme').length > 1;
+  if (paired && ['light','dark'].includes(desired) &&
+      (document.documentElement.dataset.scheme === 'alternate') !== (desired === 'dark')) {
+    window.smalldocsToggleScheme();
+  }
+  if (parent !== window) {
+    // Navigation within a specimen can be applied to all cards by the gallery.
+    document.addEventListener('click', event => {
+      const link = event.target.closest('a[href]');
+      if (!link) return;
+      const url = new URL(link.href, location.href);
+      const page = url.pathname.split('/').pop();
+      if (url.origin === location.origin && ['index.html','typography.html','code.html','components.html'].includes(page) && !url.hash) {
+        event.preventDefault();
+        parent.postMessage({type:'specimen-page',page}, location.origin);
+      }
+    });
+  }
+});
+</script>

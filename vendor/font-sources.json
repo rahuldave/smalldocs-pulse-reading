@@ -1,0 +1,57 @@
+[
+  {
+    "family": "Inter",
+    "file": "inter-400-italic.ttf",
+    "url": "https://fonts.gstatic.com/s/inter/v20/UcCM3FwrK3iLTcvneQg7Ca725JhhKnNqk4j1ebLhAm8SrXTc2dthjQ.ttf"
+  },
+  {
+    "family": "Inter",
+    "file": "inter-400-normal.ttf",
+    "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf"
+  },
+  {
+    "family": "Inter",
+    "file": "inter-600-normal.ttf",
+    "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf"
+  },
+  {
+    "family": "Inter",
+    "file": "inter-700-normal.ttf",
+    "url": "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf"
+  },
+  {
+    "family": "Open Sans",
+    "file": "open-sans-400-italic.ttf",
+    "url": "https://fonts.gstatic.com/s/opensans/v44/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk8ZkaVc.ttf"
+  },
+  {
+    "family": "Open Sans",
+    "file": "open-sans-400-normal.ttf",
+    "url": "https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4n.ttf"
+  },
+  {
+    "family": "Open Sans",
+    "file": "open-sans-600-normal.ttf",
+    "url": "https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1y4n.ttf"
+  },
+  {
+    "family": "Open Sans",
+    "file": "open-sans-700-normal.ttf",
+    "url": "https://fonts.gstatic.com/s/opensans/v44/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsg-1y4n.ttf"
+  },
+  {
+    "family": "Lato",
+    "file": "lato-400-italic.ttf",
+    "url": "https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxswWw.ttf"
+  },
+  {
+    "family": "Lato",
+    "file": "lato-400-normal.ttf",
+    "url": "https://fonts.gstatic.com/s/lato/v25/S6uyw4BMUTPHvxk.ttf"
+  },
+  {
+    "family": "Lato",
+    "file": "lato-700-normal.ttf",
+    "url": "https://fonts.gstatic.com/s/lato/v25/S6u9w4BMUTPHh6UVew8.ttf"
+  }
+]

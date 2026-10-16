@@ -1,0 +1,60 @@
+---
+title: Code with room to think
+subtitle: Names, indentation, and a few useful examples.
+---
+
+## A complete example
+
+Compare `0O`, `1Il`, `{}[]()`, and `=> != <=`. The font, line spacing, and
+syntax colors all contribute to a readable block.
+
+```{.python filename="library.py"}
+from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class Book:
+    title: str
+    author: str
+    year: int
+
+def find_books(books: list[Book], query: str) -> list[Book]:
+    """Find a title or author, ignoring case."""
+    needle = query.casefold()
+    return [book for book in books if needle in book.title.casefold()]
+
+books = [Book("A Room with a View", "E. M. Forster", 1908)]
+print(find_books(books, "room"))
+```
+
+## More than one language
+
+::: {.panel-tabset}
+
+### Python
+
+```python
+titles = sorted(book.title for book in books if book.year < 1920)
+```
+
+### JavaScript
+
+```javascript
+const titles = books.filter(book => book.year < 1920)
+  .map(book => book.title).sort();
+```
+
+### SQL
+
+```sql
+SELECT title, author FROM books WHERE year < 1920 ORDER BY title;
+```
+
+:::
+
+## A little data
+
+| Title | Author | Year |
+|:------|:-------|-----:|
+| A Room with a View | E. M. Forster | 1908 |
+| Pride and Prejudice | Jane Austen | 1813 |
+| The Time Machine | H. G. Wells | 1895 |

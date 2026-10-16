@@ -1,0 +1,12 @@
+[project]
+name = "smalldocs-pulse-reading"
+version = "0.1.0"
+description = "Pulse Reading: a SmallDocs reading refinement of Bootswatch"
+requires-python = ">=3.11"
+dependencies = ["smalldocs>=0.3.1"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false

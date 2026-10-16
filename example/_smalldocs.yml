@@ -1,0 +1,21 @@
+project:
+  type: website
+  render: [index.qmd, typography.qmd, code.qmd, components.qmd]
+website:
+  title: Pulse Reading
+  site-url: https://rahuldave.com/smalldocs-pulse-reading/
+  navbar:
+    left:
+      - href: index.qmd
+        text: Overview
+      - href: typography.qmd
+        text: Type
+      - href: code.qmd
+        text: Code
+      - href: components.qmd
+        text: Controls
+  page-footer: false
+theme: pulse-reading
+toc: false
+code-copy: true
+include-after-body: bridge.html

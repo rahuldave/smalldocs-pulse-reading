@@ -1,0 +1,28 @@
+{
+  "name": "pulse-reading",
+  "title": "Pulse Reading",
+  "upstream": "https://bootswatch.com/pulse/",
+  "version": "0.1.0",
+  "palette": {
+    "paper": "#ffffff",
+    "ink": "#444444",
+    "panel": "#f5f0fa",
+    "muted": "#62586c",
+    "link": "#593196",
+    "button": "#593196",
+    "line": "#c9c2d1",
+    "on-button": "#ffffff",
+    "link-hover": "#593196",
+    "button-hover": "#593196",
+    "focus-rgb": "89, 49, 150",
+    "success-bg": "#e6f1e8",
+    "success-ink": "#204b32",
+    "success-line": "#7e9f88",
+    "warning-bg": "#fbf1dc",
+    "warning-ink": "#604414",
+    "warning-line": "#b59a65",
+    "danger-bg": "#f9e9e5",
+    "danger-ink": "#803c32",
+    "danger-line": "#ba8b80"
+  }
+}

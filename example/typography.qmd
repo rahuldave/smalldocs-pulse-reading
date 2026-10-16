@@ -1,0 +1,36 @@
+---
+title: The shape of a page
+subtitle: Prose, hierarchy, and the details between them.
+---
+
+## A comfortable measure
+
+The first obligation of a page is to be read. A comfortable line, a generous
+margin, and an unhurried rhythm do much of the work. Consistency makes the
+details useful: the space above a heading, the weight of a rule, the way a
+link sits inside a sentence.
+
+This paragraph contains *emphasis*, **a stronger point**, and an
+[ordinary link](code.qmd). An expression such as `library.find()` has a
+different voice. Numbers 0123456789, “quotation marks,” and an em dash — all
+belong to the same typographic system.
+
+### A smaller thought
+
+A heading helps the reader skim and settle back into the text.
+
+1. Start with a concrete question or a small example.
+2. Explain enough for the reader to understand the decision.
+3. Leave a useful route to the next idea.
+
+> Read a little, think a little, and keep something worth returning to.
+
+::: {.callout-tip}
+## A useful aside
+A quieter detail can sit in its own place without interrupting the argument.
+:::
+
+::: {.callout-warning collapse="true"}
+## A condition worth keeping
+This note folds away until the reader needs the detail.
+:::
