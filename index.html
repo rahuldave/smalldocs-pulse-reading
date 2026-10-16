@@ -1,0 +1,79 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="generator" content="smalldocs-0.3.1"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"><title>Ideas worth keeping – Pulse Reading</title><link rel="stylesheet" href="site_libs/themes/pulse-reading/pulse-reading.css" data-mode="light" class="quarto-color-scheme" id="quarto-bootstrap-light"><link rel="stylesheet" href="site_libs/bootstrap-icons/bootstrap-icons.min.css"><link rel="stylesheet" href="site_libs/smalldocs.css"><meta name="smalldocs:offset" content="./"><script src="site_libs/bootstrap/bootstrap.bundle.min.js"></script><script src="site_libs/fuse/fuse.min.js"></script><script src="site_libs/smalldocs.js" defer></script></head><body class="nav-fixed fullcontent"><header id="quarto-header" class="headroom sticky-top"><nav class="navbar navbar-expand-lg sd-navbar-default"><div class="navbar-container container-fluid"><div class="navbar-brand-container mx-auto"><a class="navbar-brand" href="index.html"><span class="navbar-title">Pulse Reading</span></a></div><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarCollapse"><ul class="navbar-nav navbar-nav-scroll me-auto"><li class="nav-item"><a class="nav-link active" href="index.html" aria-current="page"><span class="menu-text">Overview</span></a></li><li class="nav-item"><a class="nav-link" href="typography.html"><span class="menu-text">Type</span></a></li><li class="nav-item"><a class="nav-link" href="code.html"><span class="menu-text">Code</span></a></li><li class="nav-item"><a class="nav-link" href="components.html"><span class="menu-text">Controls</span></a></li></ul><ul class="navbar-nav navbar-nav-scroll ms-auto"></ul><div class="quarto-navbar-tools"><div class="smalldocs-search" id="quarto-search"><i class="bi bi-search" aria-hidden="true"></i><input type="search" class="form-control form-control-sm" placeholder="Search" aria-label="Search" autocomplete="off"><div class="smalldocs-search-results dropdown-menu"></div></div></div></div></div></nav></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article"><main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title"><h1 class="title">Ideas worth keeping</h1><p class="subtitle lead">A small notebook for code and careful reading.</p></div><div class="quarto-title-meta"></div></header><p>Good documentation gives an idea room to breathe. A clear heading, a comfortable
+line, and a useful example help the reader find a way in.</p>
+<section id="a-small-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-small-example">A small example</h2>
+<p>Code should feel at home beside the prose. A name like <code>entry.title</code> carries
+the thought into a few lines you can run.</p>
+<div class="code-with-filename"><div class="code-with-filename-file"><pre><strong>notebook.py</strong></pre></div><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span class="im">from</span> dataclasses <span class="im">import</span> dataclass
+
+<span class="at">@dataclass</span>
+<span class="kw">class</span> Entry:
+    title: <span class="bu">str</span>
+    tags: <span class="bu">tuple</span>[<span class="bu">str</span>, <span class="op">.</span><span class="op">.</span><span class="op">.</span>] <span class="op">=</span> ()
+
+note <span class="op">=</span> Entry(<span class="st">&quot;</span><span class="st">The art of paying attention</span><span class="st">&quot;</span>, (<span class="st">&quot;</span><span class="st">reading</span><span class="st">&quot;</span>,))</code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></div>
+</section>
+<section id="leave-room-for-the-reader" class="level2">
+<h2 class="anchored" data-anchor-id="leave-room-for-the-reader">Leave room for the reader</h2>
+<p>A useful page has a rhythm: a thought, an example, a pause. <em>Emphasis</em> gives
+one phrase its place, and <strong>strong text</strong> makes a point easy to find again.</p>
+<blockquote>
+<p>A notebook is a place to think on paper, and a place to return to that thought.</p>
+</blockquote>
+<div class="sd-table">
+<table class="caption-top table">
+<thead>
+<tr>
+<th style="text-align:left">Piece</th>
+<th style="text-align:left">Purpose</th>
+<th style="text-align:left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">A title</td>
+<td style="text-align:left">Name the idea</td>
+<td style="text-align:left">A reading notebook</td>
+</tr>
+<tr>
+<td style="text-align:left">A tag</td>
+<td style="text-align:left">Give it another home</td>
+<td style="text-align:left"><code>reading</code></td>
+</tr>
+<tr>
+<td style="text-align:left">A link</td>
+<td style="text-align:left">Connect two thoughts</td>
+<td style="text-align:left"><a href="code.html">Code and data</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout callout-style-default callout-note callout-titled"><div class="callout-header d-flex align-content-center"><div class="callout-icon-container"><i class="callout-icon"></i></div><div class="callout-title-container flex-fill">The same document</div></div><div class="callout-body-container callout-body">
+<p>Every theme in this collection shows the same words, code, and controls.
+Only the theme changes.</p>
+</div></div>
+</section>
+</main></div><script>
+document.addEventListener('DOMContentLoaded', () => {
+  const desired = new URLSearchParams(location.search).get('mode');
+  const paired = document.querySelectorAll('link.quarto-color-scheme').length > 1;
+  if (paired && ['light','dark'].includes(desired) &&
+      (document.documentElement.dataset.scheme === 'alternate') !== (desired === 'dark')) {
+    window.smalldocsToggleScheme();
+  }
+  if (parent !== window) {
+    // Navigation within a specimen can be applied to all cards by the gallery.
+    document.addEventListener('click', event => {
+      const link = event.target.closest('a[href]');
+      if (!link) return;
+      const url = new URL(link.href, location.href);
+      const page = url.pathname.split('/').pop();
+      if (url.origin === location.origin && ['index.html','typography.html','code.html','components.html'].includes(page) && !url.hash) {
+        event.preventDefault();
+        parent.postMessage({type:'specimen-page',page}, location.origin);
+      }
+    });
+  }
+});
+</script>
+</body></html>
