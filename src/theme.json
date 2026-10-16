@@ -23,6 +23,7 @@
     "warning-line": "#b59a65",
     "danger-bg": "#f9e9e5",
     "danger-ink": "#803c32",
-    "danger-line": "#ba8b80"
+    "danger-line": "#ba8b80",
+    "select-image": "url(\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='%23444444' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m3 6 5 5 5-5'/></svg>\")"
   }
 }

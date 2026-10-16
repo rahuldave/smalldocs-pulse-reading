@@ -50,3 +50,5 @@ html a:focus-visible, html button:focus-visible, html input:focus-visible, html 
   html main.content { padding-top: 1.6rem; }
   html pre { font-size: .85rem; }
 }
+
+html .form-select { --bs-form-select-bg-img: var(--r-select-image); }
