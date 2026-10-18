@@ -2,6 +2,8 @@
 
 A SmallDocs reading refinement of [Bootswatch Pulse](https://bootswatch.com/pulse/), based on pinned Bootswatch 5.3.8. It keeps the original light palette and character, with a 640px prose column, calmer heading scale, 1.45 body leading, and locally bundled IBM Plex Mono code at 14.45px on desktop and phones. Controls, links, and status messages receive a contrast pass. Litera also unifies serif paragraph and list typography.
 
+[Theme handbook](https://rahuldave.com/elegant-themes/theme-guide.html#pulse-reading)
+
 ## Install
 
 ```sh
