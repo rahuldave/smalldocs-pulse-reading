@@ -12,6 +12,7 @@ def build():
  (out/(n+'.css')).write_text(css+'\n'+(R/'src/fonts.css').read_text()+'\n'+palette+(R/'src/reading.css').read_text()+(R/'src/design.css').read_text())
  shutil.copytree(R/'vendor/fonts',out/'fonts',dirs_exist_ok=True)
  shutil.copy2(R/'vendor/bootswatch/LICENSE',out/'BOOTSWATCH-LICENSE')
+ shutil.copy2(R/'vendor/bootstrap/LICENSE',out/'BOOTSTRAP-LICENSE')
  shutil.copy2(R/'LICENSE',out/'READING-LICENSE')
  shutil.copy2(R/'src/smalldocs.yml',out/'smalldocs.yml')
  print('Built '+n)
