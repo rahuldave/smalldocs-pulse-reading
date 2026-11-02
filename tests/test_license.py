@@ -41,3 +41,9 @@ def test_each_font_family_has_its_ofl_file():
 def test_license_paths_exist():
  for path in re.findall(r'vendor/[\w./*-]*[\w*]',text()):
   assert list(R.glob(path)),path
+def test_font_sources_list_exactly_the_shipped_fonts():
+ sources=json.loads((R/'vendor/font-sources.json').read_text())
+ assert sorted(s['file'] for s in sources)==sorted(f.name for f in (R/'vendor/fonts').glob('*.ttf'))
+ for s in sources:
+  assert s['family']==family(R/'vendor/fonts'/s['file']),s['file']
+  assert f"/s/{squash(s['family'])}/" in s['url'],s['url']
