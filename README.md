@@ -46,6 +46,8 @@ The extension compiles Quarto's native `pulse` base with an owned light/dark ove
 
 Reading body is 18px system sans, UI 16px, metadata 14px, code 16px, title 36px and separate display 48px. These reference values emit rem at a 16px root and honor zoom. Pulse uses platform fonts, so exact metrics vary by operating system. Ordinary prose and headings use primary ink. Panels use radius 4 and no resting shadow. The presentation profile is published for consumers; it does not enlarge the document interface.
 
+Bootstrap success, warning, danger and info action buttons use the approved state fill/ink pairs with the neutral meaningful control boundary. Their outline variants use paper before hover, then the same state pair; outline-secondary stays neutral. Hover, active, keyboard focus and native disabled states retain explicit role mappings.
+
 Selected controls require a word/checkmark and `aria-selected`, `aria-current` or `aria-pressed`; disabled controls require native `disabled` behavior. Error text needs a named error and `aria-describedby` association. State colors include independent fill, ink and meaningful boundary. Color alone does not supply these semantics.
 
 ```sh
