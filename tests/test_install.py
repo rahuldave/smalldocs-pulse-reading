@@ -162,3 +162,34 @@ def test_semantic_callouts_cover_all_types(foundation):
         assert f".callout-{kind}" in fixture
         assert f".callout-{kind} > .callout-header {{ background: var(--r-{state}-bg); color: var(--r-{state}-ink); border-color: var(--r-{state}-line); }}" in css
         assert f".callout-{kind} :is(.callout-title-container,.callout-icon-container,.callout-icon) {{ color: var(--r-{state}-ink); }}" in css
+
+
+@pytest.mark.parametrize("mode", ["light", "dark"])
+def test_semantic_action_pairs_and_complete_fixture(foundation, mode):
+    roles = builder.resolve(foundation["modes"][mode])
+    css = (ROOT / "src/reading.css").read_text()
+    fixture = (ROOT / "tests/fixtures/components.qmd").read_text()
+    for state, colors in foundation["modes"][mode]["states"].items():
+        assert contrast(colors["ink"], roles["paper"]) >= 4.5
+        for surface in ("paper", "panel", "code"):
+            assert contrast(roles["control-boundary"], roles[surface]) >= 3
+        for variant in ("filled", "outline"):
+            for phase in ("normal", "active", "disabled"):
+                assert f'id="action-{state}-{variant}-{phase}"' in fixture
+            selector = f'html body #quarto-content .btn-{"outline-" if variant == "outline" else ""}{state}'
+            assert selector + ':is(:hover,:active,.active,[aria-pressed=true])' in css
+    assert 'id="action-secondary-outline-normal"' in fixture
+    assert ':focus-visible { outline: 2px solid var(--r-focus); outline-offset: 4px' in css
+
+
+def test_code_profile_has_one_padding_owner(foundation):
+    css = (ROOT / "src/reading.css").read_text()
+    assert "html body #quarto-content div.sourceCode { padding: var(--r-space-panel); }" in css
+    assert "html body #quarto-content pre.sourceCode" in css
+    assert "padding: 0; margin: 0; font-family: var(--r-font-code); font-size: var(--r-size-code); line-height: var(--r-line-code); color: var(--r-code-ink);" in css
+    assert "html body #quarto-content pre.sourceCode span" in css
+    for mode in ("light", "dark"):
+        generated = (ROOT / "_extensions" / foundation["theme"] / f"{foundation['theme']}-{mode}.scss").read_text()
+        assert "--r-size-code: 1rem;" in generated
+        assert "--r-line-code: 1.5;" in generated
+        assert "--r-space-panel: 1.5rem;" in generated

@@ -82,3 +82,38 @@ print(mean(values))
 ## Listing specimen
 
 <div class="quarto-listing"><div class="card"><div class="card-body"><h3><a href="#controls">A specimen article</a></h3><p>Listing descriptions use primary prose.</p><div class="listing-date">9 November 2026 · supporting metadata</div></div></div></div>
+
+
+## Semantic action variants
+
+Status words name the action; its color does not define the meaning.
+
+<div class="semantic-actions">
+<p><button id="action-success-filled-normal" class="btn btn-success" data-action-state="success" data-action-variant="filled" data-action-phase="normal" type="button">Success filled normal</button></p>
+<p><button id="action-success-filled-active" class="btn btn-success active" data-action-state="success" data-action-variant="filled" data-action-phase="active" type="button" aria-pressed="true">Success filled active</button></p>
+<p><button id="action-success-filled-disabled" class="btn btn-success" data-action-state="success" data-action-variant="filled" data-action-phase="disabled" type="button" disabled>Success filled disabled</button></p>
+<p><button id="action-success-outline-normal" class="btn btn-outline-success" data-action-state="success" data-action-variant="outline" data-action-phase="normal" type="button">Success outline normal</button></p>
+<p><button id="action-success-outline-active" class="btn btn-outline-success active" data-action-state="success" data-action-variant="outline" data-action-phase="active" type="button" aria-pressed="true">Success outline active</button></p>
+<p><button id="action-success-outline-disabled" class="btn btn-outline-success" data-action-state="success" data-action-variant="outline" data-action-phase="disabled" type="button" disabled>Success outline disabled</button></p>
+<p><button id="action-warning-filled-normal" class="btn btn-warning" data-action-state="warning" data-action-variant="filled" data-action-phase="normal" type="button">Warning filled normal</button></p>
+<p><button id="action-warning-filled-active" class="btn btn-warning active" data-action-state="warning" data-action-variant="filled" data-action-phase="active" type="button" aria-pressed="true">Warning filled active</button></p>
+<p><button id="action-warning-filled-disabled" class="btn btn-warning" data-action-state="warning" data-action-variant="filled" data-action-phase="disabled" type="button" disabled>Warning filled disabled</button></p>
+<p><button id="action-warning-outline-normal" class="btn btn-outline-warning" data-action-state="warning" data-action-variant="outline" data-action-phase="normal" type="button">Warning outline normal</button></p>
+<p><button id="action-warning-outline-active" class="btn btn-outline-warning active" data-action-state="warning" data-action-variant="outline" data-action-phase="active" type="button" aria-pressed="true">Warning outline active</button></p>
+<p><button id="action-warning-outline-disabled" class="btn btn-outline-warning" data-action-state="warning" data-action-variant="outline" data-action-phase="disabled" type="button" disabled>Warning outline disabled</button></p>
+<p><button id="action-danger-filled-normal" class="btn btn-danger" data-action-state="danger" data-action-variant="filled" data-action-phase="normal" type="button">Danger filled normal</button></p>
+<p><button id="action-danger-filled-active" class="btn btn-danger active" data-action-state="danger" data-action-variant="filled" data-action-phase="active" type="button" aria-pressed="true">Danger filled active</button></p>
+<p><button id="action-danger-filled-disabled" class="btn btn-danger" data-action-state="danger" data-action-variant="filled" data-action-phase="disabled" type="button" disabled>Danger filled disabled</button></p>
+<p><button id="action-danger-outline-normal" class="btn btn-outline-danger" data-action-state="danger" data-action-variant="outline" data-action-phase="normal" type="button">Danger outline normal</button></p>
+<p><button id="action-danger-outline-active" class="btn btn-outline-danger active" data-action-state="danger" data-action-variant="outline" data-action-phase="active" type="button" aria-pressed="true">Danger outline active</button></p>
+<p><button id="action-danger-outline-disabled" class="btn btn-outline-danger" data-action-state="danger" data-action-variant="outline" data-action-phase="disabled" type="button" disabled>Danger outline disabled</button></p>
+<p><button id="action-info-filled-normal" class="btn btn-info" data-action-state="info" data-action-variant="filled" data-action-phase="normal" type="button">Info filled normal</button></p>
+<p><button id="action-info-filled-active" class="btn btn-info active" data-action-state="info" data-action-variant="filled" data-action-phase="active" type="button" aria-pressed="true">Info filled active</button></p>
+<p><button id="action-info-filled-disabled" class="btn btn-info" data-action-state="info" data-action-variant="filled" data-action-phase="disabled" type="button" disabled>Info filled disabled</button></p>
+<p><button id="action-info-outline-normal" class="btn btn-outline-info" data-action-state="info" data-action-variant="outline" data-action-phase="normal" type="button">Info outline normal</button></p>
+<p><button id="action-info-outline-active" class="btn btn-outline-info active" data-action-state="info" data-action-variant="outline" data-action-phase="active" type="button" aria-pressed="true">Info outline active</button></p>
+<p><button id="action-info-outline-disabled" class="btn btn-outline-info" data-action-state="info" data-action-variant="outline" data-action-phase="disabled" type="button" disabled>Info outline disabled</button></p>
+<p><button id="action-secondary-outline-normal" class="btn btn-outline-secondary" data-action-state="secondary" data-action-variant="outline" data-action-phase="normal" type="button">Secondary outline normal</button></p>
+<p><button id="action-secondary-outline-active" class="btn btn-outline-secondary active" data-action-state="secondary" data-action-variant="outline" data-action-phase="active" type="button" aria-pressed="true">Secondary outline active</button></p>
+<p><button id="action-secondary-outline-disabled" class="btn btn-outline-secondary" data-action-state="secondary" data-action-variant="outline" data-action-phase="disabled" type="button" disabled>Secondary outline disabled</button></p>
+</div>
