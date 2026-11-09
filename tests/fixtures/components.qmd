@@ -1,0 +1,84 @@
+---
+title: "Reading foundation specimen"
+subtitle: "Prose, controls and meaningful states"
+toc: true
+---
+
+## Reading and hierarchy
+
+Ordinary **primary prose** explains a [linked idea](#controls) without fading into supporting metadata. This specimen checks headings, a long enough paragraph to inspect the sixty-five-character reading measure, and font roles in both deliberately authored modes.
+
+<div class="reading-display">Editorial display</div>
+
+### A subordinate heading
+
+- A readable list uses the same prose face and size.
+- Labels and navigation use the UI face.
+
+<figure><svg role="img" aria-label="A simple comparison chart" viewBox="0 0 480 120" style="max-width:100%;height:auto"><rect x="30" y="20" width="200" height="24" fill="currentColor"/><rect x="30" y="60" width="320" height="24" fill="currentColor"/></svg><figcaption>Figure 1. A caption uses the supporting role.</figcaption></figure>
+
+## Controls
+
+<div class="reading-groups">
+<section><p><a id="sample-link" href="#states">Read the states</a></p>
+<p><button id="primary" class="btn btn-primary" type="button">Primary action</button> <button id="secondary" class="btn btn-secondary" type="button">Secondary action</button></p>
+<p><button id="outline" class="btn btn-outline-primary" type="button">Outline action</button></p>
+<p><button id="selected" class="btn btn-primary" type="button" aria-pressed="true">✓ Selected</button> <button id="disabled" class="btn btn-primary" type="button" disabled>Unavailable</button></p>
+<label class="form-label" for="name">Your name</label><input id="name" class="form-control" value="Ada" />
+<label class="form-label" for="choice">Choose a mode</label><select id="choice" class="form-select"><option>First choice</option><option>Second choice</option></select>
+<p><input class="form-check-input" id="checked" type="checkbox" checked /><label class="form-check-label" for="checked">Checked choice</label></p>
+</section>
+<section><label class="form-label" for="invalid">Required identifier</label><input id="invalid" class="form-control" aria-invalid="true" aria-describedby="invalid-message" value="?" /><p id="invalid-message" class="error-message">⚠ Error: enter a valid identifier.</p><div class="card"><div class="card-body"><h3>Bounded panel</h3><p>Primary prose remains readable on a panel. <a href="#states">Panel link</a></p></div></div></section>
+</div>
+
+## States
+
+<div class="alert alert-success" role="status"><strong>✓ Success:</strong> the document was saved.</div>
+<div class="alert alert-warning" role="status"><strong>⚠ Warning:</strong> review this value.</div>
+<div class="alert alert-danger" role="alert"><strong>✕ Error:</strong> the requested value is unavailable.</div>
+<div class="alert alert-info" role="status"><strong>ⓘ Information:</strong> a new version is ready.</div>
+
+::: {.callout-note}
+## Information
+Information: this status has a named heading and primary prose.
+:::
+
+::: {.callout-tip}
+## Success
+Success: this status has a named heading and primary prose.
+:::
+
+::: {.callout-warning}
+## Warning
+Warning: this status has a named heading and primary prose.
+:::
+
+::: {.callout-important}
+## Error
+Error: this status has a named heading and primary prose.
+:::
+
+::: {.callout-caution}
+## Caution
+Error: this status has a named heading and primary prose.
+:::
+
+## Code and tables
+
+An `inline_code` phrase stays distinct without becoming tiny.
+
+```python
+from statistics import mean
+values = [1, 2, 3]
+print(mean(values))
+```
+
+| Component | Expected behavior |
+|:---|:---|
+| Prose | Primary ink on paper |
+| Panel | Primary ink and distinct link |
+| Focus | Visible outline |
+
+## Listing specimen
+
+<div class="quarto-listing"><div class="card"><div class="card-body"><h3><a href="#controls">A specimen article</a></h3><p>Listing descriptions use primary prose.</p><div class="listing-date">9 November 2026 · supporting metadata</div></div></div></div>
