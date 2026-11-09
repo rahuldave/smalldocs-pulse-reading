@@ -1,1 +1,3 @@
-css: pulse-reading.css
+css:
+  light: pulse-reading-light.css
+  dark: pulse-reading-dark.css

@@ -1,0 +1,106 @@
+/** Rerunnable CUA browser check. Pass a connected tab and src/foundations.json.
+ * Start at /smalldocs/ or /quarto/. A parent can call this same function on a
+ * narrow iframe via manual AX interactions. CUA does not support iframe DOM
+ * evaluation; this helper verifies root documents only. Viewport/screenshots
+ * remain the browser reviewer's job.
+ */
+export async function verifyReading(tab, foundation) {
+  const failures = [];
+  let context = foundation.theme;
+  const assert = (condition, message) => { if (!condition) failures.push(context + ': ' + message); };
+  const observed = [];
+  await tab.playwright.domSnapshot();
+  for (let index = 0; index < 2; index += 1) {
+    // TOC active-state colors animate in the native shells. Wait for the
+    // declared transition duration rather than sampling an interpolated color.
+    const transitions = await tab.playwright.evaluate(() => Array.from(document.querySelectorAll('#TOC .nav-link')).map(el => ({duration:getComputedStyle(el).transitionDuration,delay:getComputedStyle(el).transitionDelay})));
+    const milliseconds = value => value.trim().endsWith('ms') ? Number.parseFloat(value) : Number.parseFloat(value) * 1000;
+    const settle = Math.max(0, ...transitions.map(item => Math.max(...item.duration.split(',').map(milliseconds)) + Math.max(...item.delay.split(',').map(milliseconds))));
+    if (settle > 0) await tab.playwright.waitForTimeout(Math.ceil(settle) + 20);
+    const metrics = await tab.playwright.evaluate(() => {
+      const style = selector => {
+        const el = document.querySelector(selector);
+        if (!el) throw new Error('Missing fixture component: ' + selector);
+        const s = getComputedStyle(el);
+        return {size: +(s.fontSize.replace('px','')), ink: s.color, fill: s.backgroundColor,
+          line: +(s.lineHeight.replace('px','')), padding: +(s.paddingTop.replace('px','')), paddingRight: +(s.paddingRight.replace('px','')), opacity: s.opacity, width: el.getBoundingClientRect().width};
+      };
+      const root = getComputedStyle(document.documentElement);
+      const hamburger = document.querySelector('.navbar-toggler-icon');
+      return {root: +(root.fontSize.replace('px','')), viewport:document.documentElement.clientWidth, body: style('body'), prose: style('main.content p'), title: style('.quarto-title h1.title'), hamburger: hamburger ? getComputedStyle(hamburger).backgroundImage : null,
+        primary: style('#primary'), secondary: style('#secondary'),
+        callout: style('.callout-body'), calloutParagraph: style('.callout-body p'), calloutHeader: style('.callout-header'), code: style('p > code'),
+        error: style('#invalid-message'), table: style('table'), cell: style('td'), tableHeading: style('th'), caption: style('figcaption'),
+        nav: style('.navbar .nav-link'), toc: Array.from(document.querySelectorAll('#TOC .nav-link')).map(el => ({active:el.classList.contains('active'),ink:getComputedStyle(el).color,size:+getComputedStyle(el).fontSize.replace('px','')})), disabled: document.querySelector('#disabled').disabled,
+        invalid: document.querySelector('#invalid').getAttribute('aria-describedby'),
+        calloutStates: ['note','tip','warning','important','caution'].map(kind => { const el = document.querySelector('.callout-' + kind); const header = el.querySelector('.callout-header'); const icon = el.querySelector('.callout-icon'); return {kind, ink:getComputedStyle(header).color, fill:getComputedStyle(header).backgroundColor, boundary:getComputedStyle(el).borderLeftColor, icon:icon ? getComputedStyle(icon).color : null}; }),
+        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth};
+    });
+    const rgb = hex => 'rgb(' + [1,3,5].map(i => parseInt(hex.slice(i,i+2),16)).join(', ') + ')';
+    const mode = Object.entries(foundation.modes).find(([,data]) => rgb(data.swatches[data.roles.paper]) === metrics.body.fill)?.[0];
+    if (!mode) throw new Error('Body uses neither authored paper');
+    context = foundation.theme + ' ' + mode;
+    const data = foundation.modes[mode];
+    const role = name => rgb(data.swatches[data.roles[name]]);
+    const reading = foundation.typography.profiles.reading;
+    assert(metrics.root === 16, 'Default root must honor the 16px browser preference: ' + metrics.root);
+    assert(metrics.body.size === reading.body, 'Body profile mismatch');
+    assert(metrics.title.size === reading.title, 'Title profile mismatch');
+    assert(Math.abs(metrics.body.line - reading.body * foundation.typography.lineHeights.reading) < .02, 'Body line-height mismatch');
+    assert(Math.abs(metrics.callout.line - reading.body * foundation.typography.lineHeights.reading) < .02, 'Callout line-height mismatch');
+    assert(metrics.callout.padding === foundation.spacing.profiles.reading.panel && metrics.callout.paddingRight === foundation.spacing.profiles.reading.panel, 'Callout panel padding mismatch');
+    assert(metrics.calloutParagraph.size === reading.body && metrics.calloutParagraph.padding === 0, 'Callout paragraph remains shrunk or double-padded');
+    assert(metrics.calloutHeader.size === reading.ui && metrics.calloutHeader.opacity === '1', 'Callout header UI role mismatch');
+    if (metrics.viewport >= 800) assert(metrics.prose.width <= 640.1, 'Desktop prose exceeds 640px: ' + metrics.prose.width);
+    assert([role('ink'),role('muted'),role('accent-text')].includes(metrics.nav.ink), 'Effective navbar ink loses foundation cascade');
+    if (metrics.hamburger && metrics.hamburger !== 'none') {
+      const image = decodeURIComponent(metrics.hamburger);
+      const paint = image.match(/(?:stroke|fill)=["'](#[0-9a-f]{6}|rgba?\([^"']+\))["']/i)?.[1];
+      if (paint) {
+        const channels = paint.startsWith('#') ? [1,3,5].map(i => parseInt(paint.slice(i,i+2),16)) : paint.match(/[\d.]+/g).map(Number);
+        const bg = role('paper').match(/\d+/g).map(Number);
+        const alpha = channels[3] ?? 1;
+        assert(alpha === 1 && 'rgb(' + channels.slice(0,3).join(', ') + ')' === role('ink'), 'Hamburger must use opaque foundation ink');
+        const lum = c => c.map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
+        const blended = channels.slice(0,3).map((v,i)=>v*alpha+bg[i]*(1-alpha));
+        const pair = [lum(blended),lum(bg)].sort((a,b)=>a-b);
+        assert((pair[1]+.05)/(pair[0]+.05)>=3, 'Hamburger glyph lacks meaningful contrast');
+      }
+    }
+    assert(metrics.secondary.size === reading.ui && metrics.secondary.ink === role('secondary-action'), 'Effective secondary action mismatch');
+    assert(metrics.callout.size === reading.body, 'Callout prose must use reading body');
+    assert(metrics.code.size === reading.code && metrics.code.ink === role('code-ink'), 'Inline code role mismatch');
+    assert(metrics.code.padding === 0 && metrics.code.paddingRight === 4, 'Inline code ladder padding mismatch');
+    assert(metrics.error.size === reading.ui && metrics.error.ink === rgb(data.states.danger.ink), 'Error role loses cascade');
+    assert(Math.abs(metrics.error.line - reading.ui * foundation.typography.lineHeights.ui) < .02, 'Error UI line-height mismatch');
+    for (const component of [metrics.table,metrics.cell,metrics.tableHeading]) {
+      assert(component.size === reading.ui && Math.abs(component.line - reading.ui * foundation.typography.lineHeights.ui) < .02, 'Table/cell UI typography mismatch');
+    }
+    assert(metrics.caption.size === reading.metadata && metrics.caption.ink === role('muted'), 'Caption role mismatch');
+    assert(metrics.disabled && metrics.invalid === 'invalid-message', 'Native/programmatic state semantics missing');
+    assert(!metrics.overflow, 'Document overflows horizontally');
+    for (const callout of metrics.calloutStates) {
+      const stateName = {note:'info',tip:'success',warning:'warning',important:'danger',caution:'danger'}[callout.kind];
+      const state = data.states[stateName];
+      assert(callout.ink === rgb(state.ink) && callout.fill === rgb(state.fill) && callout.boundary === rgb(state.boundary), 'Semantic callout pair mismatch: ' + callout.kind);
+      if (callout.icon) assert(callout.icon === rgb(state.ink), 'Semantic callout icon mismatch: ' + callout.kind);
+    }
+    assert(metrics.toc.length > 0, 'Fixture TOC links missing');
+    for (const link of metrics.toc) {
+      assert(link.ink === role(link.active ? 'accent-text' : 'muted'), 'TOC effective ink mismatch');
+      assert(link.size === reading.ui, 'TOC UI size mismatch');
+    }
+    observed.push({mode, ...metrics});
+    await tab.playwright.locator('.quarto-color-scheme-toggle').first().click();
+    await tab.playwright.domSnapshot();
+  }
+  assert(observed[0].mode !== observed[1].mode, 'Mode control did not switch authored palettes');
+  await tab.playwright.getByLabel('Your name', {exact:true}).fill('Grace');
+  await tab.playwright.getByLabel('Choose a mode', {exact:true}).selectOption({label:'Second choice'});
+  await tab.playwright.getByLabel('Checked choice', {exact:true}).uncheck();
+  await tab.playwright.getByLabel('Your name', {exact:true}).press('Tab');
+  await tab.playwright.domSnapshot();
+  const focus = await tab.playwright.evaluate(() => ({outline:getComputedStyle(document.activeElement).outlineWidth, value:document.querySelector('#name').value, checked:document.querySelector('#checked').checked, selected:document.querySelector('#choice').selectedIndex}));
+  assert(focus.outline === '2px' && focus.value === 'Grace' && !focus.checked && focus.selected === 1, 'Keyboard/form interaction failed');
+  return {passed: failures.length === 0, failures, observed, focus};
+}

@@ -1,54 +1,145 @@
-/* Reading refinements layered over an intact, pinned Bootswatch theme. */
-html:root, html.quarto-dark:root {
-  --sd-root-font-size: 17px; --sd-body-width: 640px;
-  --sd-gap: 2.5rem; --sd-code-bg: var(--r-panel); --sd-inline-code: var(--r-link);
-  --bs-body-bg: var(--r-paper); --bs-body-color: var(--r-ink);
-  --bs-body-line-height: 1.45;
-  --bs-font-monospace: "IBM Plex Mono", ui-monospace, monospace;
+/* Owned Reading profile. Reference pixels are emitted as rem at a 16px root. */
+html:root {
+  font-size: 100%;
+  --sd-root-font-size: 1rem;
+  --sd-body-width: 640px;
+  --sd-gap: var(--r-space-columns);
+  --sd-code-bg: var(--r-code);
+  --sd-inline-code: var(--r-code-ink);
+  --bs-body-bg: var(--r-paper);
+  --bs-link-color: var(--r-accent-text);
+  --bs-link-hover-color: var(--r-link-hover);
+  --bs-secondary-color: var(--r-muted);
+  --bs-tertiary-color: var(--r-muted);
+  --sd-muted: var(--r-muted);
+  --bs-body-color: var(--r-ink);
+  --bs-body-font-family: var(--r-font-body);
+  --bs-font-sans-serif: var(--r-font-ui);
+  --bs-font-monospace: var(--r-font-code);
+  --bs-body-line-height: var(--r-line-reading);
+  --bs-border-color: var(--r-decorative-line);
 }
-body { line-height: 1.45; -webkit-font-smoothing: antialiased; }
-html main.content { padding-top: 2.2rem; padding-bottom: 3rem; }
-html main.content p, html main.content li { line-height: 1.45; }
-html main.content p { margin-bottom: 1rem; }
-html .quarto-title h1.title { font-size: 2rem; line-height: 1.15; font-weight: 600; letter-spacing: -.025em; margin-bottom: .75rem; }
-html .quarto-title .subtitle { font-size: 1.06rem; line-height: 1.45; color: var(--r-muted); max-width: 48ch; }
-html main.content h2 { font-size: 1.4rem; line-height: 1.25; font-weight: 600; margin: 2.2rem 0 .75rem; padding: 0; border: 0; }
-html main.content h3 { font-size: 1.15rem; line-height: 1.3; font-weight: 600; margin: 1.8rem 0 .65rem; }
+html body { background: var(--r-paper); color: var(--r-ink); font-family: var(--r-font-body); font-size: var(--r-size-body); line-height: var(--r-line-reading); font-synthesis: none; }
+html main.content { max-width: 40rem; min-width: 0; padding-block: var(--r-space-group); }
+:where(html main.content) :is(p,li,dt,dd,blockquote) { color: inherit; font-family: inherit; font-size: inherit; line-height: inherit; }
+html main.content p { margin: 0 0 var(--r-space-paragraph); }
+html :is(h1,h2,h3,h4,h5,h6) { color: var(--r-ink); font-family: var(--r-font-heading); font-weight: var(--r-heading-weight); letter-spacing: normal; line-height: var(--r-line-heading); }
+html .quarto-title h1.title, html main.content > h1 { font-size: var(--r-size-title); margin: 0 0 var(--r-space-withinGroup); }
+html .reading-display { font-family: var(--r-font-display); font-size: var(--r-size-display); line-height: var(--r-line-display); }
+html main.content h2 { font-size: var(--r-size-heading); margin: var(--r-space-group) 0 var(--r-space-withinGroup); padding: 0; border: 0; }
+html main.content h3 { font-size: 1.5rem; margin: 2rem 0 1rem; }
+html main.content :is(h4,h5,h6) { font-size: var(--r-size-ui); margin: 2rem 0 1rem; }
+html :is(strong,b) { font-weight: var(--r-bold-weight); }
+html :is(.navbar,.sidebar,.btn,.form-label,.form-check-label,.alert,.callout-header,.quarto-listing-category-title) { font-family: var(--r-font-ui); font-size: var(--r-size-ui); line-height: var(--r-line-ui); }
+html :is(.quarto-title-meta,.quarto-title-meta-contents,.listing-date,.listing-author,figcaption,.figure-caption,.code-with-filename-file) { font-family: var(--r-font-ui); font-size: var(--r-size-metadata); line-height: var(--r-line-ui); color: var(--r-muted); }
+html .quarto-title .subtitle { font-family: var(--r-font-body); font-size: var(--r-size-body); color: var(--r-ink); max-width: 65ch; }
 html a { color: var(--r-link); text-underline-offset: .18em; }
-html a:hover { color: var(--r-link-hover); }
-html pre { font: 400 .85rem/1.5 var(--bs-font-monospace); tab-size: 4; }
-html pre code { font: inherit; }
-html :not(pre) > code { font-family: var(--bs-font-monospace); font-size: .85em; color: var(--r-link); background: var(--r-panel); }
-html div.sourceCode { background: var(--r-panel); border: 1px solid var(--r-line); }
-html .code-with-filename-file { background: var(--r-panel); color: var(--r-muted); border-color: var(--r-line); }
-html .code-with-filename-file pre { font-size: .78rem; }
-html .navbar { background: var(--r-paper); color: var(--r-ink); border-bottom: 1px solid var(--r-line); }
-html .navbar .nav-link { color: var(--r-muted); }
-html .navbar .nav-link.active { color: var(--r-link); text-decoration: underline; text-underline-offset: .3em; }
-html .navbar-brand, html .navbar-title { color: var(--r-ink); }
-html .btn { background-image: none; --bs-btn-focus-shadow-rgb: var(--r-focus-rgb); }
-html .btn-primary { --bs-btn-bg: var(--r-button); --bs-btn-color: var(--r-on-button); --bs-btn-border-color: var(--r-button); --bs-btn-hover-bg: var(--r-button-hover); --bs-btn-hover-color: var(--r-on-button); --bs-btn-hover-border-color: var(--r-button-hover); --bs-btn-active-bg: var(--r-button-hover); --bs-btn-active-color: var(--r-on-button); --bs-btn-active-border-color: var(--r-button-hover); }
-html .btn-outline-primary { --bs-btn-color: var(--r-link); --bs-btn-border-color: var(--r-link); --bs-btn-hover-color: var(--r-paper); --bs-btn-hover-bg: var(--r-link); --bs-btn-hover-border-color: var(--r-link); --bs-btn-active-color: var(--r-paper); --bs-btn-active-bg: var(--r-link); --bs-btn-active-border-color: var(--r-link); }
-html .btn-secondary { --bs-btn-color: var(--r-ink); --bs-btn-bg: var(--r-panel); --bs-btn-border-color: var(--r-muted); --bs-btn-hover-color: var(--r-ink); --bs-btn-hover-bg: var(--r-panel); --bs-btn-hover-border-color: var(--r-link); --bs-btn-active-color: var(--r-ink); --bs-btn-active-bg: var(--r-panel); --bs-btn-active-border-color: var(--r-link); }
-html .form-control, html .form-select, html .form-check-input { background-color: var(--r-paper); color: var(--r-ink); border-color: color-mix(in srgb, var(--r-muted) 75%, var(--r-paper)); }
-html .form-control:focus, html .form-select:focus, html .form-check-input:focus { border-color: var(--r-link); box-shadow: 0 0 0 2px color-mix(in srgb, var(--r-link) 25%, transparent); }
-html .form-check-input:checked { background-color: var(--r-button); border-color: var(--r-button); }
-html .alert { font-family: var(--bs-font-sans-serif); font-size: 1rem; background-image: none; }
+html a:hover { color: var(--r-link-hover); text-decoration: underline; }
+html :is(pre,pre code) { font-family: var(--r-font-code); font-size: var(--r-size-code); line-height: var(--r-line-code); color: var(--r-code-ink); background: var(--r-code); }
+html pre { padding: var(--r-space-withinGroup); tab-size: 4; overflow-x: auto; border-radius: var(--r-radius); }
+html pre code { padding: 0; }
+html :not(pre) > code { font-family: var(--r-font-code); font-size: var(--r-size-code); color: var(--r-code-ink); background: var(--r-code); }
+html div.sourceCode { background: var(--r-code); border: 1px solid var(--r-decorative-line); border-radius: var(--r-radius); }
+html .code-with-filename-file { background: var(--r-code); border-color: var(--r-decorative-line); }
+html .navbar { background: var(--r-paper); color: var(--r-ink); border-bottom: 1px solid var(--r-decorative-line); }
+html .navbar :is(.navbar-brand,.navbar-title) { color: var(--r-ink); }
+html .navbar .nav-link, html :is(.sidebar,.sidebar-navigation) a { color: var(--r-muted); }
+html :is(.navbar,.sidebar,.sidebar-navigation) a:is(.active,[aria-current]) { color: var(--r-accent-text); text-decoration: underline; text-underline-offset: .3em; }
+html #TOC a { color: var(--r-muted); }
+html #TOC a.active { color: var(--r-accent-text); text-decoration: underline; }
+html .btn { background-image: none; border-radius: var(--r-radius); font-size: var(--r-size-ui); box-shadow: none; }
+html .btn-primary { --bs-btn-bg: var(--r-button); --bs-btn-color: var(--r-on-button); --bs-btn-border-color: var(--r-button); --bs-btn-hover-bg: var(--r-primary-hover-fill); --bs-btn-hover-color: var(--r-primary-hover-ink); --bs-btn-hover-border-color: var(--r-primary-hover-fill); --bs-btn-active-bg: var(--r-selected-fill); --bs-btn-active-color: var(--r-selected-ink); --bs-btn-active-border-color: var(--r-selected-fill); }
+html .btn-outline-primary { --bs-btn-color: var(--r-accent-text); --bs-btn-bg: transparent; --bs-btn-border-color: var(--r-control-boundary); --bs-btn-hover-color: var(--r-primary-hover-ink); --bs-btn-hover-bg: var(--r-primary-hover-fill); --bs-btn-hover-border-color: var(--r-primary-hover-fill); --bs-btn-active-color: var(--r-selected-ink); --bs-btn-active-bg: var(--r-selected-fill); }
+html .btn-secondary { --bs-btn-color: var(--r-secondary-action); --bs-btn-bg: var(--r-panel); --bs-btn-border-color: var(--r-control-boundary); --bs-btn-hover-color: var(--r-secondary-action); --bs-btn-hover-bg: var(--r-panel); --bs-btn-hover-border-color: var(--r-focus); --bs-btn-active-color: var(--r-selected-ink); --bs-btn-active-bg: var(--r-selected-fill); }
+html :is(.btn,[role=tab])[aria-selected=true], html .btn[aria-pressed=true] { color: var(--r-selected-ink); background: var(--r-selected-fill); text-decoration: underline; border: 2px solid var(--r-focus); }
+html .btn:is(:disabled,.disabled,[aria-disabled=true]), html :is(input,select,textarea):disabled { color: var(--r-disabled-ink); background: var(--r-disabled-fill); border-color: var(--r-control-boundary); opacity: 1; cursor: not-allowed; }
+html :is(.form-control,.form-select,.form-check-input) { color: var(--r-ink); background-color: var(--r-paper); border: 1px solid var(--r-control-boundary); border-radius: var(--r-radius); font-family: var(--r-font-ui); font-size: var(--r-size-ui); }
+html :is(.form-control,.form-select,.form-check-input):focus { color: var(--r-ink); background-color: var(--r-paper); border-color: var(--r-focus); box-shadow: none; }
+html .form-check-input:checked { background-color: var(--r-selected-fill); border-color: var(--r-control-boundary); }
+html :is(input,select,textarea)[aria-invalid=true], html .is-invalid { border: 2px solid var(--r-danger-line); background-color: var(--r-danger-bg); color: var(--r-danger-ink); }
+html :is(.invalid-feedback,.error-message) { color: var(--r-danger-ink); background: var(--r-danger-bg); padding: .5rem; font-family: var(--r-font-ui); font-size: var(--r-size-ui); }
+html .alert { background-image: none; border-radius: var(--r-radius); border-width: 1px; }
 html .alert-success { color: var(--r-success-ink); background-color: var(--r-success-bg); border-color: var(--r-success-line); }
 html .alert-warning { color: var(--r-warning-ink); background-color: var(--r-warning-bg); border-color: var(--r-warning-line); }
 html .alert-danger { color: var(--r-danger-ink); background-color: var(--r-danger-bg); border-color: var(--r-danger-line); }
-html .alert-info { color: var(--r-ink); background-color: var(--r-panel); border-color: var(--r-line); }
-html .callout { --sd-callout: var(--r-link); border-color: var(--r-line); border-left: 3px solid var(--r-link); }
+html .alert-info { color: var(--r-info-ink); background-color: var(--r-info-bg); border-color: var(--r-info-line); }
+html .callout { border: 1px solid var(--r-decorative-line); border-left: 3px solid var(--r-control-boundary); border-radius: var(--r-radius); box-shadow: none; }
 html .callout-header { background: var(--r-panel); color: var(--r-ink); }
-html .callout-icon-container { color: var(--r-link); }
-html .callout-body { color: var(--r-ink); }
-html .card { --bs-card-bg: var(--r-paper); --bs-card-color: var(--r-ink); --bs-card-border-color: var(--r-line); }
-html .table { --bs-table-bg: transparent; --bs-table-color: var(--r-ink); }
-html a:focus-visible, html button:focus-visible, html input:focus-visible, html select:focus-visible { outline: 2px solid var(--r-link); outline-offset: 3px; }
-@media(max-width:575.98px) {
-  html .quarto-title h1.title { font-size: 1.8rem; }
-  html main.content { padding-top: 1.6rem; }
-  html pre { font-size: .85rem; }
+html .callout-body { color: var(--r-ink); background: var(--r-paper); }
+html .callout-icon-container { color: var(--r-accent-text); }
+html .card { --bs-card-bg: var(--r-panel); --bs-card-color: var(--r-ink); --bs-card-border-color: var(--r-decorative-line); border-radius: var(--r-radius); box-shadow: none; }
+html .card-body { padding: var(--r-space-panel); }
+html .table { --bs-table-bg: transparent; --bs-table-color: var(--r-ink); --bs-table-border-color: var(--r-decorative-line); --bs-table-striped-bg: var(--r-panel); --bs-table-striped-color: var(--r-ink); --bs-table-hover-bg: var(--r-panel); --bs-table-hover-color: var(--r-ink); font-family: var(--r-font-ui); font-size: var(--r-size-ui); }
+html .dropdown-menu { --bs-dropdown-bg: var(--r-panel); --bs-dropdown-color: var(--r-ink); --bs-dropdown-link-color: var(--r-ink); --bs-dropdown-link-hover-bg: var(--r-paper); --bs-dropdown-link-hover-color: var(--r-ink); --bs-dropdown-link-active-bg: var(--r-selected-fill); --bs-dropdown-link-active-color: var(--r-selected-ink); }
+html :is(a,button,input,select,textarea,[tabindex]):focus-visible { outline: 2px solid var(--r-focus); outline-offset: 4px; box-shadow: none; }
+html .reading-groups { display: grid; gap: var(--r-space-columns); grid-template-columns: repeat(2,minmax(0,1fr)); }
+html .reading-groups > * { min-width: 0; }
+@media (max-width: 40rem) {
+  html main.content { max-width: 40rem; min-width: 0; padding-block: 2rem; padding-inline: 0; }
+  html .reading-groups { grid-template-columns: 1fr; }
+  html :is(input,select,textarea) { max-width: 100%; }
 }
 
+html .form-check-input:checked[type=checkbox] { --bs-form-check-bg-image: var(--r-check-image); }
+html .form-check-input:checked[type=radio] { --bs-form-check-bg-image: var(--r-radio-image); border-radius: 50%; }
 html .form-select { --bs-form-select-bg-img: var(--r-select-image); }
+
+/* Native Bootstrap/Quarto component selectors can set literal colors after
+   their variables. Map the effective foreground as well as the variables. */
+html .navbar { --bs-navbar-color: var(--r-ink); --bs-navbar-hover-color: var(--r-link-hover); --bs-navbar-active-color: var(--r-accent-text); --bs-navbar-brand-color: var(--r-ink); --bs-navbar-brand-hover-color: var(--r-link-hover); --bs-navbar-toggler-border-color: var(--r-control-boundary); }
+html .navbar :is(.nav-link,.navbar-brand,.navbar-title,.navbar-toggler,.quarto-navbar-tools,.quarto-navbar-tools a,.quarto-navbar-tools button) { color: var(--r-ink); }
+html .navbar .nav-link:hover { color: var(--r-link-hover); }
+html .btn-primary { color: var(--r-button-ink); }
+html .btn-primary:hover { color: var(--r-primary-hover-ink); }
+html .btn-secondary, html .btn-secondary:hover { color: var(--r-secondary-action); }
+html .btn-outline-primary { color: var(--r-accent-text); }
+html .btn-outline-primary:hover { color: var(--r-primary-hover-ink); }
+html .btn:is(:disabled,.disabled,[aria-disabled=true]) { color: var(--r-disabled-ink); }
+html .callout .callout-body { font-family: var(--r-font-body); font-size: var(--r-size-body); line-height: var(--r-line-reading); padding: var(--r-space-panel); }
+html .callout .callout-header { padding: var(--r-space-withinGroup) var(--r-space-panel); }
+html .callout .callout-body p:last-child { margin-bottom: 0; }
+
+/* The document grid owns narrow gutters; main must not add another inset. */
+@media (max-width: 40rem) {
+  html #quarto-content.page-columns { padding-inline: 0; column-gap: 0; grid-template-columns: [screen-start] var(--r-space-narrowOuter) [screen-start-inset page-start page-start-inset body-start-outset body body-start body-content-start] minmax(0,1fr) [body-content-end body-end body-end-outset page-end-inset page-end screen-end-inset] var(--r-space-narrowOuter) [screen-end]; }
+}
+
+/* Quarto's style-specific callout selectors own literal font sizes and first
+   paragraph padding. Resolve the whole effective component after that shell. */
+html body #quarto-content .callout { padding: 0; }
+html body #quarto-content .callout :is(.callout-body,.callout-body-container) { font-family: var(--r-font-body); font-size: var(--r-size-body); line-height: var(--r-line-reading); padding: var(--r-space-panel); margin: 0; }
+html body #quarto-content .callout > .callout-header { font-family: var(--r-font-ui); font-size: var(--r-size-ui); font-weight: var(--r-heading-weight); line-height: var(--r-line-ui); padding: var(--r-space-withinGroup) var(--r-space-panel); margin: 0; opacity: 1; }
+html body #quarto-content .callout .callout-body > :first-child { padding-top: 0; margin-top: 0; }
+
+/* State callouts communicate status, independently of the family brand. */
+html .navbar .nav-link { padding: .5rem .75rem; }
+html body #quarto-content :not(pre) > code { padding: 0 .25rem; }
+html body #quarto-content .callout-tip { border-color: var(--r-success-line); --sd-callout: var(--r-success-line); }
+html body #quarto-content .callout-tip > .callout-header { background: var(--r-success-bg); color: var(--r-success-ink); border-color: var(--r-success-line); }
+html body #quarto-content .callout-tip :is(.callout-title-container,.callout-icon-container,.callout-icon) { color: var(--r-success-ink); }
+html body #quarto-content .callout-warning { border-color: var(--r-warning-line); --sd-callout: var(--r-warning-line); }
+html body #quarto-content .callout-warning > .callout-header { background: var(--r-warning-bg); color: var(--r-warning-ink); border-color: var(--r-warning-line); }
+html body #quarto-content .callout-warning :is(.callout-title-container,.callout-icon-container,.callout-icon) { color: var(--r-warning-ink); }
+html body #quarto-content .callout-important { border-color: var(--r-danger-line); --sd-callout: var(--r-danger-line); }
+html body #quarto-content .callout-important > .callout-header { background: var(--r-danger-bg); color: var(--r-danger-ink); border-color: var(--r-danger-line); }
+html body #quarto-content .callout-important :is(.callout-title-container,.callout-icon-container,.callout-icon) { color: var(--r-danger-ink); }
+html body #quarto-content .callout-caution { border-color: var(--r-danger-line); --sd-callout: var(--r-danger-line); }
+html body #quarto-content .callout-caution > .callout-header { background: var(--r-danger-bg); color: var(--r-danger-ink); border-color: var(--r-danger-line); }
+html body #quarto-content .callout-caution :is(.callout-title-container,.callout-icon-container,.callout-icon) { color: var(--r-danger-ink); }
+html body #quarto-content .callout-note { border-color: var(--r-info-line); --sd-callout: var(--r-info-line); }
+html body #quarto-content .callout-note > .callout-header { background: var(--r-info-bg); color: var(--r-info-ink); border-color: var(--r-info-line); }
+html body #quarto-content .callout-note :is(.callout-title-container,.callout-icon-container,.callout-icon) { color: var(--r-info-ink); }
+
+/* SmallDocs' late core CSS and native navbar-dark rules must resolve the same
+   opaque roles as Quarto, including active navigation and TOC links. */
+html body #quarto-header .navbar .navbar-nav .nav-link { color: var(--r-ink); padding: .5rem .75rem; }
+html body #quarto-header .navbar .navbar-nav .nav-link:is(.active,[aria-current=page]) { color: var(--r-accent-text); text-decoration: underline; }
+html body #quarto-header .navbar .navbar-nav .nav-link:hover { color: var(--r-link-hover); }
+html body #TOC .nav-link { color: var(--r-muted); opacity: 1; font-family: var(--r-font-ui); font-size: var(--r-size-ui); line-height: var(--r-line-ui); }
+html body #TOC .nav-link.active { color: var(--r-accent-text); border-left-color: var(--r-accent-text); text-decoration: underline; }
+html body #TOC .nav-link:hover { color: var(--r-link-hover); }
+
+html body #quarto-content table.table, html body #quarto-content table.table :is(th,td) { font-family: var(--r-font-ui); font-size: var(--r-size-ui); line-height: var(--r-line-ui); }
+html :is(.invalid-feedback,.error-message) { line-height: var(--r-line-ui); }
+
+html body #quarto-header .navbar .navbar-toggler-icon { background-image: var(--r-menu-image); }
