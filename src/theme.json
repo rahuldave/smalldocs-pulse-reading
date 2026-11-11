@@ -2,7 +2,7 @@
   "name": "pulse-reading",
   "title": "Pulse Reading",
   "upstream": "https://bootswatch.com/pulse/",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "palette": {
     "paper": "#ffffff",
     "ink": "#444444",

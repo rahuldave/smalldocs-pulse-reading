@@ -193,3 +193,45 @@ def test_code_profile_has_one_padding_owner(foundation):
         assert "--r-size-code: 1rem;" in generated
         assert "--r-line-code: 1.5;" in generated
         assert "--r-space-panel: 1.5rem;" in generated
+
+
+@pytest.mark.parametrize("mode", ["light", "dark"])
+@pytest.mark.parametrize("phase", ["normal", "hover", "focus-visible", "active", "pressed", "disabled", "disabled-hover", "disabled-active"])
+def test_compiled_secondary_action_cascade(foundation, mode, phase):
+    from css_probe import effective_colors
+    roles = builder.resolve(foundation["modes"][mode])
+    classes = ["btn", "btn-secondary"]
+    attributes = ''
+    if "hover" in phase or phase == "focus-visible":
+        classes.append("probe-" + ("hover" if "hover" in phase else "focus-visible"))
+    if "active" in phase:
+        classes.append("active")
+    if "disabled" in phase:
+        attributes += ' disabled="disabled"'
+    if phase == "pressed":
+        attributes += ' aria-pressed="true"'
+    fragment = '<button id="probe" class="' + ' '.join(classes) + '"' + attributes + '>Secondary</button>'
+    for extension in ("css", "scss"):
+        css = (ROOT / "_extensions" / foundation["theme"] / f"{foundation['theme']}-{mode}.{extension}").read_text()
+        if extension == "scss":
+            css = css.split("/*-- scss:rules --*/", 1)[1]
+        colors = effective_colors(css, fragment)
+        if "disabled" in phase:
+            expected = (roles["disabled-ink"], roles["disabled-fill"])
+        elif phase in ("active", "pressed"):
+            expected = (roles["selected-ink"], roles["selected-fill"])
+        else:
+            expected = (roles["secondary-action"], roles["panel"])
+        assert (colors["color"], colors["background-color"]) == expected, (mode, phase, extension, colors)
+        assert contrast(*expected) >= 4.5
+    assert 'id="secondary-active"' in (ROOT / "tests/fixtures/components.qmd").read_text()
+    assert 'id="secondary-disabled"' in (ROOT / "tests/fixtures/components.qmd").read_text()
+
+
+def test_release_metadata_follows_project_version(foundation):
+    import tomllib
+    version = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]["version"]
+    assert json.loads((ROOT / "src/theme.json").read_text())["version"] == version
+    for path in (ROOT / "src/_extension.yml", ROOT / "_extensions" / foundation["theme"] / "_extension.yml"):
+        assert yaml.safe_load(path.read_text())["version"] == version
+    assert foundation["typography"]["lineHeights"]["reading"] == 1.6

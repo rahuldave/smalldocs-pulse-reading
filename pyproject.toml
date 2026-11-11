@@ -1,12 +1,17 @@
 [project]
 name = "smalldocs-pulse-reading"
-version = "0.2.0"
+version = "0.2.1"
 description = "Pulse Reading: a SmallDocs reading refinement of Bootswatch"
 requires-python = ">=3.11"
 dependencies = ["smalldocs>=0.3.1"]
 
 [dependency-groups]
-dev = ["pytest>=8", "jsonschema>=4"]
+dev = [
+    "pytest>=8",
+    "jsonschema>=4",
+    "tinycss2>=1.5.1",
+    "cssselect2>=0.10.1",
+]
 
 [tool.uv]
 package = false

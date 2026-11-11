@@ -176,3 +176,10 @@ html body #quarto-content pre.sourceCode span, html body #quarto-content pre cod
 html body #quarto-content .btn { background-image: none; }
 html body #quarto-content .btn:is(.active,[aria-pressed=true]) { text-decoration: underline; text-underline-offset: .25rem; }
 html body #quarto-content .btn:is(:disabled,.disabled,[aria-disabled=true]) { text-decoration: none; }
+
+/* Pulse's native secondary button sets a literal white background. Resolve
+   the effective pair as well as component variables, without restyling disabled
+   controls or allowing hover to replace the selected-state pair. */
+html body #quarto-content .btn-secondary:not(:disabled):not(.disabled):not([aria-disabled=true]) { color: var(--r-secondary-action); background-color: var(--r-panel); border-color: var(--r-control-boundary); }
+html body #quarto-content .btn-secondary:not(:disabled):not(.disabled):not([aria-disabled=true]):is(:hover,:focus-visible) { color: var(--r-secondary-action); background-color: var(--r-panel); border-color: var(--r-focus); }
+html body #quarto-content .btn-secondary:not(:disabled):not(.disabled):not([aria-disabled=true]):is(:active,.active,[aria-pressed=true]) { color: var(--r-selected-ink); background-color: var(--r-selected-fill); border-color: var(--r-focus); }

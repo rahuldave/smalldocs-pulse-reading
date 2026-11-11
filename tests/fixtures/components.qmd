@@ -22,6 +22,7 @@ Ordinary **primary prose** explains a [linked idea](#controls) without fading in
 <div class="reading-groups">
 <section><p><a id="sample-link" href="#states">Read the states</a></p>
 <p><button id="primary" class="btn btn-primary" type="button">Primary action</button> <button id="secondary" class="btn btn-secondary" type="button">Secondary action</button></p>
+<p><button id="secondary-active" class="btn btn-secondary active" type="button" aria-pressed="true">✓ Secondary selected</button> <button id="secondary-disabled" class="btn btn-secondary" type="button" disabled>Secondary unavailable</button></p>
 <p><button id="outline" class="btn btn-outline-primary" type="button">Outline action</button></p>
 <p><button id="selected" class="btn btn-primary" type="button" aria-pressed="true">✓ Selected</button> <button id="disabled" class="btn btn-primary" type="button" disabled>Unavailable</button></p>
 <label class="form-label" for="name">Your name</label><input id="name" class="form-control" value="Ada" />

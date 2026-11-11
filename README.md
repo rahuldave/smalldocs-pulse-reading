@@ -40,7 +40,7 @@ The extension compiles Quarto's native `pulse` base with an owned light/dark ove
 
 ## Editable source and build
 
-`src/foundations.json` is the authoritative v1 contract for both modes: named swatches, semantic references, interaction/state pairs, font jobs and available weights, reading/presentation profiles, spacing and shape. The installable extension includes an identical `foundations.json` for downstream consumers. `src/theme.json` keeps compatibility metadata; its palette is generated from the native contract mode. Edit foundations rather than generated aliases.
+`src/foundations.json` is the authoritative v1 contract for both modes: named swatches, semantic references, interaction/state pairs, font jobs and available weights, reading/presentation profiles, spacing and shape. The installable extension includes an identical `foundations.json` for downstream consumers. `pyproject.toml` owns the release version; the builder propagates it to source and installable metadata. `src/theme.json` keeps compatibility metadata; its palette is generated from the native contract mode. Edit foundations rather than generated aliases.
 
 `src/reading.css` maps components to those roles; `src/design.css` is reserved for family-specific rules. Both SmallDocs CSS files and the Bootstrap-free Quarto SCSS overlays are generated. `vendor/` pins upstream CSS and local fonts, with their licenses. Builds require no network after dependency installation. Do not edit vendor CSS to change the Reading adaptation.
 
@@ -60,6 +60,10 @@ uv run smalldocs publish gh-pages example --no-render
 Tests validate the local schema, opaque contrast pairs, deterministic builds, derived aliases and profile changes. They install freshly generated files through public SmallDocs and Quarto add commands using a temporary committed snapshot, then render `tests/fixtures/components.qmd` in independent consumers. Quarto testing is skipped explicitly if Quarto is unavailable. The fixture covers prose, listing, code, figure, table, callout, links, controls, selected/disabled/error states and all status pairs. Generated acceptance sites remain under ignored `.build/qa/` for browser review. These static and rendering checks do not certify a projector or whole-page accessibility.
 
 Source is on `main`; generated example pages are on `gh-pages`. Website publication is separate from source updates. Existing font-source and license documentation remains applicable.
+
+## November contrast repair · 0.2.1
+
+Secondary filled buttons now resolve their effective neutral fill and ink in both renderers, with distinct selected and disabled states. This repairs the dark companion's inherited white background without changing type, spacing or shape.
 
 ## Licenses
 

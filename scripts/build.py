@@ -6,6 +6,7 @@ The pinned vendor trees remain unmodified.
 import json
 import re
 import shutil
+import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,7 +63,8 @@ def build():
     if foundation["schemaVersion"] != 1 or foundation["theme"] != name:
         raise ValueError("Unsupported or mismatched foundation")
     # Compatibility metadata is generated; it is never an independent palette.
-    theme["version"] = "0.2.0"
+    version = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]["version"]
+    theme["version"] = version
     theme["palette"] = aliases(foundation["modes"][foundation["nativeMode"]])
     (source / "theme.json").write_text(json.dumps(theme, indent=2) + "\n")
     output = ROOT / "_extensions" / name
@@ -102,7 +104,12 @@ def build():
     shutil.copy2(source / "fonts.css", output / "fonts.css")
     shutil.copy2(source / "foundations.json", output / "foundations.json")
     shutil.copy2(source / "smalldocs.yml", output / "smalldocs.yml")
-    shutil.copy2(source / "_extension.yml", output / "_extension.yml")
+    extension, count = re.subn(r"^version: .*$", "version: " + version,
+                               (source / "_extension.yml").read_text(), flags=re.MULTILINE)
+    if count != 1:
+        raise ValueError("Expected one Quarto extension version")
+    (source / "_extension.yml").write_text(extension)
+    (output / "_extension.yml").write_text(extension)
     print("Built " + name + " (paired SmallDocs and Quarto)")
 
 
